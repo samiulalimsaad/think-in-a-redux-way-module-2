@@ -1,16 +1,10 @@
-import React, { useState } from "react";
+import { connect } from "react-redux";
+import {
+    decrementAction,
+    incrementAction,
+} from "../redux/Counter/actionsCreators";
 
-const Counter = () => {
-    const [count, setCount] = useState(0);
-
-    const incrementHandler = () => {
-        setCount((p) => p + 1);
-    };
-
-    const decrementHandler = () => {
-        setCount((p) => p - 1);
-    };
-
+const Counter = ({ count, incrementHandler, decrementHandler }) => {
     return (
         <div className="p-4 h-auto flex flex-col items-center justify-center space-y-5 bg-white rounded shadow">
             <div className="text-2xl font-semibold">{count}</div>
@@ -32,4 +26,22 @@ const Counter = () => {
     );
 };
 
-export default Counter;
+const mapStateToProps = (state) => {
+    console.log({ state });
+    return {
+        count: state?.value,
+    };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        incrementHandler: () => {
+            dispatch(incrementAction(1));
+        },
+        decrementHandler: () => {
+            dispatch(decrementAction(1));
+        },
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);

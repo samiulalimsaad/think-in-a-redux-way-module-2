@@ -3,7 +3,8 @@ import { DECREMENT, INCREMENT } from "./actionsTypes";
 const initialState = {
     value: 0,
 };
-export const counterReducer = (state = initialState, action) => {
+
+const counterReducer = (state = initialState, action) => {
     switch (action.type) {
         case INCREMENT:
             return {
@@ -21,3 +22,5 @@ export const counterReducer = (state = initialState, action) => {
             state;
     }
 };
+
+export default counterReducer;
