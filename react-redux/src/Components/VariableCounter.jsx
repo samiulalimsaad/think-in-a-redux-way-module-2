@@ -31,7 +31,6 @@ const VariableCounter = ({ count, incrementHandler, decrementHandler }) => {
 };
 
 const mapStateToProps = (state, { dynamic }) => {
-    console.log({ state });
     return {
         count: dynamic ? state.dCounter.value : state.counter.value,
     };
